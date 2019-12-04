@@ -1,3 +1,8 @@
+# Fork and clone this repo!
+
+Make sure to fork this repo and clone it to your computer.
+Work through as many exercises as you can, and then submit a Pull Request through github.
+
 
 # Small Exercises
 
