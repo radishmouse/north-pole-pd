@@ -89,12 +89,24 @@ function mostWanted(caseArray) {
     // most number of offenses.
     // How many offenses has one individual
     // committed?
-
+    
     const obj = crimesPerPerson(database.cases);
     const individualsAndCounts = objectToArray(obj);
     individualsAndCounts.sort(byCrimeCount);
     
+    // Compare to original database and
+    // remove anyone without an open case
+    const mostWanted = individualsAndCounts.filter(function (individual) {
+        const name = individual.name;
+        const openCases = database.cases
+                                    .filter(isOpen)
+                                    .filter(function (aCase) {
+                                        return aCase.name === name;
+                                    });
+        return openCases.length > 0;
+    });
+
     // return wantedArray;
-    return individualsAndCounts.slice(0, 10);
+    return mostWanted.slice(0, 10);
 }
 const theMostWanted = mostWanted(database.cases);
