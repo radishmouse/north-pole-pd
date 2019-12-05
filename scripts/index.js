@@ -170,5 +170,39 @@ function getMostWantedArray(mostWantedObj, mostOffenses) {
 const mostOffensesArray = getMostWantedArray(mostWantedObj, mostOffenses);
 console.log(mostOffensesArray);
 
+// apparently josephine howard had 10 offenses and was the most, so she's the most wanted
+// but otherwise, this thing works!
 
+// TODO: Write a function that creates an array of the 10 oldest cases that are still open
+// TODO: filter out all case objects that are not open
+// TODO: sort remaining case objects by date
+// TODO: make new array of the 10 oldest (one side or the other)
 
+function getOpenCases(caseObjArray) {
+    let openCasesObjArray = caseObjArray.filter(isOpen);
+    return openCasesObjArray;
+}
+
+let openCasesObjArray = getOpenCases(database.cases);
+console.log(openCasesObjArray);
+
+function compareAges(a, b) {
+    if (a.date > b.date) {
+        return 1;
+    }
+    if (a.date < b.date) {
+        return -1;
+    }
+    return 0;
+}
+
+function sortOpenCases(caseObjArray) {
+    let sortedCaseObjArray = caseObjArray.sort(compareAges);
+    return sortedCaseObjArray;
+}
+
+let oldest10Cases = sortOpenCases(openCasesObjArray).slice(0, 10);
+console.log(oldest10Cases);
+// works :)
+// messed up the slicing at the end and grabbed the 10 newest instead of the 10 oldest
+// but otherwise, this works great!!!
